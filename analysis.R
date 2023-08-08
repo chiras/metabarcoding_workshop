@@ -2,26 +2,25 @@
 library(phyloseq)
 library(ggplot2)
 library(bipartite)
-library(tidyr)
 
 # Setting working directory (check path)
-setwd('/Users/ra39huv/TMP/MolBioDiv-MB-2023/Pollinator_16S')
+setwd('/Users/ra39huv/tmp_tut/metabarcoding_workshop/data_ITS2')
 
 # Custom functions inclusion (check path)
-source('../_resources/metabarcoding_tools_0-1a.R')
+source('../bin/metabarcoding_tools_0-1a.R')
 
 
 # Loading in data
 ## Taxonomy
 data.tax <- tax_table(as.matrix(read.table("taxonomy.vsearch", header=T,row.names=1,fill=T,sep=",")))
 # for bacteria only:
-data.tax <- data.tax[,1:5]
+#data.tax <- data.tax[,1:5]
 
 ## Community table
 data.otu <- otu_table(read.table("asv_table.merge.txt"), taxa_are_rows=T)
 
 ## Sample metadata (second line optional if sample names include "-"):
-data.map <- 	sample_data(read.table("samples.csv", header=T, row.names=1,  sep=";", fill=T))
+data.map <- 	sample_data(read.table("ITS2_samples.csv", header=T, row.names=1,  sep=";", fill=T))
 
 ## check metadata vs. samples in sequencing data consistency
 sample_names(data.map )[!(sample_names(data.map ) %in% sample_names(data.otu))]
@@ -38,15 +37,15 @@ tail(tax_table(data.comp))
 
 ## filtering irrelevant taxa, 
 ## 16S data: 
-(data.comp.filter = subset_taxa(data.comp, kingdom=="d:Bacteria"))
-(data.comp.filter = subset_taxa(data.comp.filter, genus!="d:Bacteria_spc_spc_spc_spc"))
-(data.comp.filter = subset_taxa(data.comp.filter, family!="f:Chloroplast"))
+#(data.comp.filter = subset_taxa(data.comp, kingdom=="d:Bacteria"))
+#(data.comp.filter = subset_taxa(data.comp.filter, genus!="d:Bacteria_spc_spc_spc_spc"))
+#(data.comp.filter = subset_taxa(data.comp.filter, family!="f:Chloroplast"))
 
 ## ITS2 data: 
-#(data.comp.filter = subset_taxa(data.comp, phylum=="p:Streptophyta"))
-#(data.comp.filter = subset_taxa(data.comp.filter, species!="p:Streptophyta_spc_spc_spc_spc"))
-#(data.comp.filter = subset_taxa(data.comp.filter, species!="k:Viridiplantae_spc_spc_spc_spc_spc"))
-#(data.comp.filter = subset_taxa(data.comp.filter, kingdom!=""))
+(data.comp.filter = subset_taxa(data.comp, phylum=="p:Streptophyta"))
+(data.comp.filter = subset_taxa(data.comp.filter, species!="p:Streptophyta_spc_spc_spc_spc"))
+(data.comp.filter = subset_taxa(data.comp.filter, species!="k:Viridiplantae_spc_spc_spc_spc_spc"))
+(data.comp.filter = subset_taxa(data.comp.filter, kingdom!=""))
 
 ## Make taxa labels nice for plots
 data.comp.filter <- replace_tax_prefixes(data.comp.filter)
@@ -58,10 +57,6 @@ tail(tax_table(data.comp.filter))
 # "genus" for 16s data, species" for ITS2 data
 (data.species <- tax_glom(data.comp.filter,taxrank="genus"))
 taxa_names(data.species) <- tax_table(data.species)[,"genus"]
-
-## (optional) Label samples with low throughput with LT
-(data.species <- label_low_throughput(data.species , 1500))
-sample_names(data.species)
 
 # Transform to relative data
 data.species.rel = transform_sample_counts(data.species, function(x) x/sum(x))
@@ -83,7 +78,7 @@ data.melt$Sample <- as.factor(data.melt$Sample)
 
 dir.create("plots")
 
-pdf("plots/sample_rel_abundance.pdf", width=15, height=25)
+pdf("plots/sample_rel_abundance.pdf", width=12, height=15)
 ggplot(data.melt, aes(OTU, Abundance, fill= family)) +
   facet_grid(Host ~ .)+
   theme_bw()+
