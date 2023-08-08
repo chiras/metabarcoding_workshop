@@ -1,7 +1,7 @@
 
 # VSEARCH
 https://github.com/torognes/vsearch/releases/tag/v2.23.0
-Download respective binary and save in ```./bin``` folder
+Download & unzip respective binary (bin/vsearch) and save in this projects ```./bin``` folder
 
 # SeqFilter
 
