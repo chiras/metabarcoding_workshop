@@ -1,6 +1,6 @@
 # metabarcoding_workshop
 
-This is a small example for analysing metabarcoding data (ITS2: plants, 16S: bacteria). Samples originate from nest contents of wild solitary bees in Germany. [https://royalsocietypublishing.org/doi/10.1098/rstb.2021.0171](https://royalsocietypublishing.org/doi/10.1098/rstb.2021.0171)
+This is a small example for analysing metabarcoding data (ITS2: plants, 16S: bacteria). Samples originate from nest contents (pollen provision) of wild solitary bees in Germany. [https://royalsocietypublishing.org/doi/10.1098/rstb.2021.0171](https://royalsocietypublishing.org/doi/10.1098/rstb.2021.0171)
 
 If you use this script, consider citing the article above.
 
