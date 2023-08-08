@@ -1,7 +1,9 @@
 
-VSEARCH https://github.com/torognes/vsearch/releases/tag/v2.23.0
+# VSEARCH
+https://github.com/torognes/vsearch/releases/tag/v2.23.0
+Download respective binary and save in ```./bin``` folder
 
-#SeqFilter
+# SeqFilter
 
 ```sh
 git clone https://github.com/BioInf-Wuerzburg/SeqFilter
@@ -10,5 +12,11 @@ make
 cp bin/SeqFilter ../metabarcoding_workshop/bin/
 ```
 # R/Rstudio
+https://cran.rstudio.com
+https://posit.co/download/rstudio-desktop/
 
-# R packages vegan, phyloseq, bipartite
+# R packages vegan, phyloseq, bipartite,ggplot2
+
+```R
+install.packages("vegan","phyloseq","bipartite","ggplot2")
+```
