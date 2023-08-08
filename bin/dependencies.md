@@ -10,6 +10,7 @@ git clone https://github.com/BioInf-Wuerzburg/SeqFilter
 cd SeqFilter/
 make
 cp bin/SeqFilter ../metabarcoding_workshop/bin/
+cp -R lib ../metabarcoding_workshop/
 ```
 # R/Rstudio
 https://cran.rstudio.com
