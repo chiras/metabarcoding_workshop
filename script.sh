@@ -1,13 +1,13 @@
 #!/bin/sh
 
-# variable definition
+# setting working directory
 wd=./data_ITS2
+cd $wd
+
+# variable definition
 vsearch=../bin/vsearch
 sf=../bin/SeqFilter
 threads=5
-
-#extracting files
-cd $wd
 
 # decompressing all sequence files in parallel
 echo "-- decompressing raw files"
