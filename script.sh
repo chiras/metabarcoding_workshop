@@ -45,7 +45,7 @@ for f in *_R1*.fastq; do
 
       $vsearch --fastq_filter $s.merge.fq \
             --fastq_maxee 1 \
-            --fastq_minlen 200 \
+            --fastq_minlen 150 \
             --fastq_maxlen 550 \
             --fastq_maxns 0 \
             --fastaout $s.mergefiltered.fa \
