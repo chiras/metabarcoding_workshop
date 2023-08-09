@@ -19,5 +19,10 @@ https://posit.co/download/rstudio-desktop/
 # R packages vegan, phyloseq, bipartite,ggplot2
 
 ```R
-install.packages("vegan","phyloseq","bipartite","ggplot2")
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("phyloseq")
+
+install.packages("vegan","bipartite","ggplot2")
 ```
