@@ -3,11 +3,12 @@
 propagate_incomplete_taxonomy <- function(phyloseq){
 	taxranks <- colnames(tax_table(phyloseq))
 	for (i in 2:length(taxranks)){
+	  if (sum(sum(tax_table(phyloseq)[,taxranks[i]]==""))>1){
 		tax_table(phyloseq)[tax_table(phyloseq)[,taxranks[i]]=="",taxranks[i]]<-paste(tax_table(phyloseq)[tax_table(phyloseq)[,taxranks[i]]=="",taxranks[i-1]],"_spc",sep="")
+	  }
 	}
 	  return(phyloseq)
 }
-
 
 #Make taxa labels nice for plots
 replace_tax_prefixes <- function(phyloseq){
