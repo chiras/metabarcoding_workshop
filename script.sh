@@ -174,11 +174,8 @@ $vsearch --sintax zotus.direct.$countdb.uc.nohit.fasta \
     --strand plus --sintax_cutoff 0.9 \
     --threads $threads 2>  logs/_sintax.log
 
-# for 16S bacteria
+# some reformatting
 cut -f1,4 zotus.uc.merge.nohit.sintax |  sed -E -e "s/,s:.*$//"  >> taxonomy.vsearch
-
-# for ITS2 plants
-# cut -f1,4 zotus.uc.merge.nohit.sintax |  sed -E -e "s/\_[0-9]+//g" -e "s/,s:.*$//"  >> taxonomy.vsearch
 
 sed -i .bak -e "s/c:.*,o:/o:/g" -e "s/;size=[0-9]*//" -e "s/[A-Za-z0-9]*;tax=//" -e "s/[[:space:]]/,/" taxonomy.vsearch
 sed -i .bak "s/#OTU ID//" asv_table.merge.txt
