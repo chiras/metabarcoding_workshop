@@ -20,7 +20,7 @@ data.tax <- tax_table(as.matrix(read.table("taxonomy.vsearch", header=T,row.name
 data.otu <- otu_table(read.table("asv_table.merge.txt"), taxa_are_rows=T)
 
 ## Sample metadata (second line optional if sample names include "-"):
-data.map <- 	sample_data(read.table("ITS2_samples.csv", header=T, row.names=1,  sep=";", fill=T))
+data.map <- 	sample_data(read.table("metadata.csv", header=T, row.names=1,  sep=";", fill=T))
 
 ## check metadata vs. samples in sequencing data consistency
 sample_names(data.map )[!(sample_names(data.map ) %in% sample_names(data.otu))]
